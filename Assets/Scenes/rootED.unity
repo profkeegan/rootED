@@ -6952,7 +6952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da0f145c53332344811fd63670a9a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementSmoothing: 0.05
+  Position: {x: 0, y: 0, z: 0}
 --- !u!61 &1597456825
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7567,7 +7567,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1798807881}
-  - component: {fileID: 1798807880}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -7575,20 +7574,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1798807880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798807879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f37880d7cdd173640ae1191a0ce470d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tilemap: {fileID: 267041628}
-  Grid: {fileID: 323583289}
 --- !u!4 &1798807881
 Transform:
   m_ObjectHideFlags: 0

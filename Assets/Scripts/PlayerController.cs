@@ -2,86 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
-	
-	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-	private Vector3 m_Velocity = Vector3.zero;
+    public Vector3Int Position;
 
+    private bool _isFacingRight = true;
 
-	
-
-	[System.Serializable]
-	public class BoolEvent : UnityEvent<bool> { }
-	
-
-	private void Awake()
-	{
-    }
-
-	
-	private void Update()
+    private void Update()
     {
+        var direction = Vector3Int.zero;
+        var movement = 0f;
+
         if (Input.GetKeyDown(KeyCode.D))
         {
-            if (true) //Check if allowed to move to tile
-            {
-				if(!m_FacingRight)
-					Flip();
-
-                this.gameObject.transform.position = new Vector2(this.gameObject.transform.position.x + 1f, this.gameObject.transform.position.y);
-            }
-            var neighbours = TilemapManager.Instance.FindAllTileNeighbors(this.gameObject.transform.position);
+            direction = Vector3Int.right;
+            movement = 1f;
         }
-
-        if (Input.GetKeyDown(KeyCode.A))
+        else if(Input.GetKeyDown(KeyCode.A))
         {
-            if (true) //Check if allowed to move to tile
-            {
-                if(m_FacingRight)
-                    Flip();
-
-                this.gameObject.transform.position = new Vector2(this.gameObject.transform.position.x - 1f, this.gameObject.transform.position.y);
-            }
-
+            direction = Vector3Int.left;
+            movement = -1f;
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            direction = Vector3Int.up;
+            movement = -1f;
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            direction = Vector3Int.down;
+            movement = 1f;
         }
 
+        var canMove = Cache.Instance.CanPlayerMove(direction);
 
-       
+        if (canMove)
+        {
+            if((direction == Vector3Int.right && !_isFacingRight) || (direction == Vector3Int.left && _isFacingRight))
+                Flip();
 
-        //      float move = Input.GetAxisRaw("Horizontal");
-
-        ////only control the player if grounded or airControl is turned on
-
-        //	// Move the character by finding the target velocity
-        //	Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
-        //	// And then smoothing it out and applying it to the character
-        //	m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-
-        //	// If the input is moving the player right and the player is facing left...
-        //	if (move > 0 && !m_FacingRight)
-        //	{
-        //		// ... flip the player.
-        //		Flip();
-        //	}
-        //	// Otherwise if the input is moving the player left and the player is facing right...
-        //	else if (move < 0 && m_FacingRight)
-        //	{
-        //		// ... flip the player.
-        //		Flip();
-        //	}
-
+            if (direction == Vector3Int.left || direction == Vector3Int.right)
+                this.gameObject.transform.position = new Vector2(this.gameObject.transform.position.x + movement, this.gameObject.transform.position.y);
+            else
+                this.gameObject.transform.position = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + movement);
+        }
     }
 
     private void Flip()
 	{
-		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
-
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
+		_isFacingRight = !_isFacingRight;
+        
+		var theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
