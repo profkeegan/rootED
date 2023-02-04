@@ -6,12 +6,15 @@ using UnityEngine.Tilemaps;
 
 public class TilemapManager : MonoBehaviour
 {
+    public static TilemapManager Instance;
+
     public Tilemap Tilemap;
     public GridLayout Grid;
 
     private void Awake()
     {
-       
+        if (Instance == null)
+            Instance = this;
     }
 
     private readonly Vector3Int[] Directions = 
@@ -30,8 +33,8 @@ public class TilemapManager : MonoBehaviour
 
     public List<TileBase> FindAllTileNeighbors(Vector2 gameOjectPosition)
     {  
-        var grid = Tilemap.GetComponentInParent<GridLayout>();
-        var gridPosition = grid.WorldToCell(gameOjectPosition);
+        //var grid = Tilemap.GetComponentInParent<GridLayout>();
+        var gridPosition = Grid.WorldToCell(gameOjectPosition);
     
         if(!Tilemap.HasTile(gridPosition))
         {
