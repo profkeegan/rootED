@@ -11,7 +11,7 @@ public enum TileTypes
     Granite
 }
 
-public enum InteractableObjects
+public enum InteractableObjectTypes
 {
     None,
     Miner,

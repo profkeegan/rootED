@@ -17,20 +17,29 @@ public class TileTypeList
     }
 }
 
+[Serializable]
+public class InteractableObjectMapping
+{
+    public InteractableObjectTypes Type;
+    public Sprite Sprite;
+}
+
 [CreateAssetMenu(fileName = "Cache", menuName = "ScriptableObjects/Cache", order = 1)]
 public class Cache : ScriptableObject
 {
     public static Cache Instance;
 
-    public PlayerController PlayerController;
     public Tilemap TileMap;
     public List<TileTypeList> Tiles;
+    public List<InteractableObjectMapping> InteractableObjectMappings;
     public Dictionary<Vector3Int, TileInfo> TileInfos = new();
     
-    private void Awake()
+    private void OnEnable()
     {
         if (Instance == null)
             Instance = this;
+        
+        TileMap = FindObjectOfType<Tilemap>();
 
         if (Tiles.Count == 0)
         {
@@ -85,14 +94,5 @@ public class Cache : ScriptableObject
     public TileTypes GetTileType(Vector3Int position)
     {
         return GetTileType((Tile)TileMap.GetTile(position));
-    }
-
-    public bool CanPlayerMove(Vector3Int direction)
-    {
-        var position = PlayerController.Position + direction;
-        
-        if(TileInfos.ContainsKey(position))
-            return !TileInfos[position].IsBlocked;
-        return false;
     }
 }
