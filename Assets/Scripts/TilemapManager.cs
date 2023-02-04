@@ -53,6 +53,8 @@ public class TilemapManager : MonoBehaviour
                 tiles.Add(neighbour);
             }
         }
+
+        Debug.Log($"Found {tiles.Count} neighbors!");
         return tiles;
         //  return (neighbourPositions.Select(neighbourPosition => gridPosition + neighbourPosition).Where(position => Tilemap.HasTile(position)).Select(position => Tilemap.GetTile(position))).ToList();
     } 
