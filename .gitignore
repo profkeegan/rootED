@@ -65,3 +65,5 @@ crashlytics-build.properties
 _ReSharper.Caches/
 
 .idea/
+
+UserSettings/
