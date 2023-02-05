@@ -38,4 +38,13 @@ MonoBehaviour:
   - TileType: 4
     Tiles:
     - {fileID: 11400000, guid: 6ecde302e80c8054889b55ef945b9b60, type: 2}
-  InteractableObjectMappings: []
+  InteractableObjectMappings:
+  - Type: 1
+    Sprite: {fileID: 21300000, guid: be0f91c7090894b4384d738acf2d6059, type: 3}
+  - Type: 2
+    Sprite: {fileID: 21300000, guid: 79761e027067b5641b4b6d3ea90fb9f2, type: 3}
+  - Type: 3
+    Sprite: {fileID: -1876147384, guid: 21617b5685f295142b3e9afa899e92fe, type: 3}
+  - Type: 4
+    Sprite: {fileID: 788366850, guid: 21617b5685f295142b3e9afa899e92fe, type: 3}
+  InteractableObjectPrefab: {fileID: 6620455199676487787, guid: 45f97906576589b44b501dc3e84aa2a8, type: 3}

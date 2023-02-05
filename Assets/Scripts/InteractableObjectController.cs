@@ -50,12 +50,6 @@ public class InteractableObjectController : MonoBehaviour
          else if (_isBeingCarried)
          {
              var tile = PlayerController.Instance.GetNextTile();
-             if (tile.IsBlocked)
-             {
-                 Debug.Log("Can't drop, tile blocked");
-                 return;
-             }
-
              var o = this.gameObject;
              o.transform.parent = PlayerController.Instance.TileMap.transform;
              o.transform.position = tile.Center;
