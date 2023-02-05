@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e8462ac0df8e4ecc8078ad352fb3e3d
+guid: 9d6d0361b45a13245982f7c2d606653d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spriteDirtTop_0
+      name: spriteDiggerBit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 423ee71f25486d242b28e237ddcc04e0
-      internalID: 1011018641
+      spriteID: 46195cc7b38ceae49b8f8a752fbda6cf
+      internalID: 415338592
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spriteDirtTop_1
+      name: spriteDiggerBit_1
       rect:
         serializedVersion: 2
         x: 16
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 233bd0ee41a7d384fa9272ac67b8562f
-      internalID: 1126185827
+      spriteID: 3106db34525ebf1458879897e280ff79
+      internalID: -1405412787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spriteDirtTop_2
+      name: spriteDiggerBit_2
       rect:
         serializedVersion: 2
         x: 32
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc0b660ce6e8ea34da7f277fa5ddadf5
-      internalID: 1894658337
+      spriteID: 9e58d9aab8ebc374aa0e92b179814902
+      internalID: -1468407445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spriteDirtTop_3
+      name: spriteDiggerBit_3
       rect:
         serializedVersion: 2
         x: 48
@@ -184,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e9a3b9a2521b12488eaaa7259065fab
-      internalID: -1587844895
+      spriteID: 9a3011c7c1607804cbb72276d4899b19
+      internalID: -1402006408
       vertices: []
       indices: 
       edges: []
@@ -201,10 +201,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spriteDirtTop_3: -1587844895
-      spriteDirtTop_0: 1011018641
-      spriteDirtTop_1: 1126185827
-      spriteDirtTop_2: 1894658337
+      spriteDiggerBit_3: -1402006408
+      spriteDiggerBit_0: 415338592
+      spriteDiggerBit_2: -1468407445
+      spriteDiggerBit_1: -1405412787
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

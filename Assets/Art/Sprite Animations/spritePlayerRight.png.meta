@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e8462ac0df8e4ecc8078ad352fb3e3d
+guid: a290d3f91866bce4e8b0a47dce472cf5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spriteDirtTop_0
+      name: spritePlayerRight_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 423ee71f25486d242b28e237ddcc04e0
-      internalID: 1011018641
+      spriteID: a0440ae085f0c494799ee4ee83b67c42
+      internalID: 1822704249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spriteDirtTop_1
+      name: spritePlayerRight_1
       rect:
         serializedVersion: 2
         x: 16
@@ -142,50 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 233bd0ee41a7d384fa9272ac67b8562f
-      internalID: 1126185827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spriteDirtTop_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc0b660ce6e8ea34da7f277fa5ddadf5
-      internalID: 1894658337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spriteDirtTop_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e9a3b9a2521b12488eaaa7259065fab
-      internalID: -1587844895
+      spriteID: 91389e2a3fe7f354b979769ad534c3f3
+      internalID: 309711164
       vertices: []
       indices: 
       edges: []
@@ -201,10 +159,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spriteDirtTop_3: -1587844895
-      spriteDirtTop_0: 1011018641
-      spriteDirtTop_1: 1126185827
-      spriteDirtTop_2: 1894658337
+      spritePlayerRight_0: 1822704249
+      spritePlayerRight_1: 309711164
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

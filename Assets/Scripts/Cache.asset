@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcee22cb7332c7c4f95033bc0802ed3d, type: 3}
   m_Name: Cache
   m_EditorClassIdentifier: 
-  PlayerController: {fileID: 7273198348904895767, guid: e7d674705c33b45f1b48f197f5f9d980, type: 3}
-  TileMap: {fileID: 972505496780128491, guid: c8ff30ae077014129b2b4a484bd826d7, type: 3}
+  TileMap: {fileID: 0}
   Tiles:
   - TileType: 1
     Tiles:
@@ -26,11 +25,17 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f4f13d8c9863ffd4c88b925684a49c0c, type: 2}
   - TileType: 2
     Tiles:
-    - {fileID: 11400000, guid: b39e7d9139c422e469c2700f36326fc2, type: 2}
-    - {fileID: 11400000, guid: 68ac9129a994cdf439aeb5ee8b65227f, type: 2}
+    - {fileID: 11400000, guid: 21df57d664d1e134cb4d43bf0b3b96a8, type: 2}
+    - {fileID: 11400000, guid: e754c91393fdeeb48b7ae99c5c39117f, type: 2}
+    - {fileID: 11400000, guid: a4d2e5dd2af467b49a3a52b390809597, type: 2}
+    - {fileID: 11400000, guid: 0906d75fcc2160041aa8dbdcdaf24b5d, type: 2}
   - TileType: 3
     Tiles:
-    - {fileID: 11400000, guid: 0906d75fcc2160041aa8dbdcdaf24b5d, type: 2}
+    - {fileID: 11400000, guid: a71a9b702a66326448babea3b59a355b, type: 2}
+    - {fileID: 11400000, guid: 5f8d1c275cccf5f4d995aa5d3236ba1b, type: 2}
+    - {fileID: 11400000, guid: e579468cd46acc54faec03053668f584, type: 2}
+    - {fileID: 11400000, guid: af11fc9a87eff8a40aca91371df28686, type: 2}
   - TileType: 4
     Tiles:
     - {fileID: 11400000, guid: 6ecde302e80c8054889b55ef945b9b60, type: 2}
+  InteractableObjectMappings: []
