@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class InteractableObjectController : MonoBehaviour
 {
@@ -46,13 +42,27 @@ public class InteractableObjectController : MonoBehaviour
              o.transform.parent = PlayerController.Instance.transform;
              o.transform.localPosition = new Vector3(0.5f, 0);
              o.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
-             o.transform.Rotate(0, 0, 25);
+             o.transform.eulerAngles = new Vector3(0, 0, 25);
+             PlayerController.Instance.CarriedItem = this.gameObject;
+             PlayerController.Instance.GetCurrentTile().InteractableObjects.Remove(this.gameObject);
              _isBeingCarried = true;
          }
          else if (_isBeingCarried)
          {
-             this.gameObject.transform.position = PlayerController.Instance.GetCurrentTile().Center;
-             this.gameObject.transform.parent = PlayerController.Instance.TileMap.transform;
+             var tile = PlayerController.Instance.GetNextTile();
+             if (tile.IsBlocked)
+             {
+                 Debug.Log("Can't drop, tile blocked");
+                 return;
+             }
+
+             var o = this.gameObject;
+             o.transform.parent = PlayerController.Instance.TileMap.transform;
+             o.transform.position = tile.Center;
+             o.transform.localScale = new Vector3(1, 1, 1);
+             o.transform.eulerAngles = new Vector3(0, 0, 0);
+             PlayerController.Instance.CarriedItem = null;
+             _isBeingCarried = false;
          }
       }
    }

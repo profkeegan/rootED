@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
@@ -15,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Grid Grid;
     public Tilemap TileMap;
 
+    public GameObject CarriedItem;
     private bool _isFacingRight = true;
 
     private void Awake()
@@ -57,25 +54,16 @@ public class PlayerController : MonoBehaviour
         if (direction == Vector3Int.zero)
             return;
 
-        var gridPosition = Grid.WorldToCell(gameObject.transform.position);
-
-        if (!Cache.Instance.TileMap.HasTile(gridPosition))
+        if ((direction == Vector3Int.up || direction == Vector3Int.down) && CarriedItem != null)
         {
-            Debug.LogWarning($"The position {gridPosition} does not exist in the map!");
+            Debug.Log("Up/Down restricted, carrying item..");
             return;
         }
 
-        var position = gridPosition + direction;
-        bool canMove;
-        if (Cache.Instance.TileInfos.ContainsKey(position))
-        {
-            var info = Cache.Instance.TileInfos[position];
-            Debug.Log($"CanPlayerMove Tile: Type: {info.Type}, Row: {info.Row}, Column: {info.Column}, Blocked: {info.IsBlocked}");
-            canMove = !info.IsBlocked;
-        }
-        else
-            canMove = false;
-
+        var info = GetNeighbouringTile(direction);
+        var canMove = !info.IsBlocked;
+        Debug.Log($"CanPlayerMove Tile: Type: {info.Type}, Row: {info.Row}, Column: {info.Column}, Blocked: {info.IsBlocked}");
+       
         if (canMove)
         {
             if (direction == Vector3Int.right && !_isFacingRight || direction == Vector3Int.left && _isFacingRight)
@@ -86,6 +74,25 @@ public class PlayerController : MonoBehaviour
             else
                 this.gameObject.transform.position = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + movement);
         }
+    }
+
+    public TileInfo GetNeighbouringTile(Vector3Int direction)
+    {
+        var gridPosition = Grid.WorldToCell(gameObject.transform.position);
+        var position = gridPosition + direction;
+
+        if (!Cache.Instance.TileMap.HasTile(gridPosition))
+            throw new Exception($"The position {gridPosition} does not exist on the map!");
+
+        if(!Cache.Instance.TileInfos.ContainsKey(position))
+            throw new Exception($"The position {position} does not exist in TileInfos!");
+
+        return Cache.Instance.TileInfos[position];
+    }
+
+    public TileInfo GetNextTile()
+    {
+        return GetNeighbouringTile(_isFacingRight ? Vector3Int.right : Vector3Int.left);
     }
 
     private void Flip()

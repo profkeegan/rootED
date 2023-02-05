@@ -38,9 +38,6 @@ public class Cache : ScriptableObject
     
     private void OnEnable()
     {
-        //if (!Application.isPlaying)
-        //    return;
-
         if (Instance == null)
             Instance = this;
         
