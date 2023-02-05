@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -32,10 +33,14 @@ public class Cache : ScriptableObject
     public Tilemap TileMap;
     public List<TileTypeList> Tiles;
     public List<InteractableObjectMapping> InteractableObjectMappings;
+    public GameObject InteractableObjectPrefab;
     public Dictionary<Vector3Int, TileInfo> TileInfos = new();
     
     private void OnEnable()
     {
+        //if (!Application.isPlaying)
+        //    return;
+
         if (Instance == null)
             Instance = this;
         
@@ -50,7 +55,6 @@ public class Cache : ScriptableObject
         }
 
         TileMap.CompressBounds();
-        var i = 0;
         var row = -1;
         var column = -1;
         var lastrow = 0;
@@ -68,16 +72,37 @@ public class Cache : ScriptableObject
                     lastrow = row;
 
                     var position = new Vector3Int(x, y, z);
-                    Debug.Log($"Processing Tile {i++}, Pos: {position}, Row: {row} Col: {column}");
+                    //Debug.Log($"Processing Tile {i++}, Pos: {position}, Row: {row} Col: {column}");
                     TileMap.SetTileFlags(position, TileFlags.None);
 
                     var tile = (Tile) TileMap.GetTile(position);
-                    TileInfos.Add(position, new TileInfo(position, row, column, tile));
+                    TileInfos.Add(position, new TileInfo(position, TileMap.GetCellCenterWorld(position), row, column, tile));
 
-                    TileMap.SetColor(position, Color.red);
+                    //TileMap.SetColor(position, Color.red);
                 }
             }
         }
+        Debug.Log($"Processed {TileInfos.Count} Tiles.");
+    }
+
+    public void CreateInteractableObjects()
+    {
+        var t = GetTileInfo(1, 3);
+        var obj = Instantiate(InteractableObjectPrefab, t.Center, Quaternion.identity, TileMap.transform);
+        obj.GetComponent<InteractableObjectController>().Type = InteractableObjectTypes.Miner;
+        obj.SetActive(true);
+        t.InteractableObjects.Add(obj);
+
+        t = GetTileInfo(1, 4);
+        obj = Instantiate(InteractableObjectPrefab, t.Center, Quaternion.identity, TileMap.transform);
+        obj.GetComponent<InteractableObjectController>().Type = InteractableObjectTypes.Excavator;
+        obj.SetActive(true);
+        t.InteractableObjects.Add(obj);
+    }
+
+    public TileInfo GetTileInfo(int row, int column)
+    {
+        return TileInfos.FirstOrDefault(x => x.Value.Row == row && x.Value.Column == column).Value;
     }
 
     public TileTypes GetTileType(Tile tile)
@@ -94,5 +119,10 @@ public class Cache : ScriptableObject
     public TileTypes GetTileType(Vector3Int position)
     {
         return GetTileType((Tile)TileMap.GetTile(position));
+    }
+
+    public Sprite GetInteractableObjectScprite(InteractableObjectTypes interactableObject)
+    {
+        return InteractableObjectMappings.FirstOrDefault(x => x.Type == interactableObject)?.Sprite;
     }
 }

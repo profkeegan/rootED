@@ -17,5 +17,5 @@ public enum InteractableObjectTypes
     Miner,
     Excavator,
     Bomb,
-    Barrelc
+    Barrel
 }

@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
+
+    public Cache Cache;
     
-    public Vector3Int Position;
     public Grid Grid;
+    public Tilemap TileMap;
 
     private bool _isFacingRight = true;
 
@@ -18,8 +21,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        
-        Position = new Vector3Int(1, 1);
+    }
+
+    private void OnEnable()
+    {
+        Instance.Cache.CreateInteractableObjects();
     }
 
     private void Update()
@@ -89,5 +95,14 @@ public class PlayerController : MonoBehaviour
         var theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    public TileInfo GetCurrentTile()
+    {
+        var gridPosition = Grid.WorldToCell(gameObject.transform.position);
+        if (Cache.Instance.TileInfos.ContainsKey(gridPosition))
+            return Cache.Instance.TileInfos[gridPosition];
+
+        throw new Exception("Cannot find current TileInfo!");
     }
 }

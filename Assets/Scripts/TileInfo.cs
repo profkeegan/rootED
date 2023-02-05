@@ -7,13 +7,14 @@ using UnityEngine.Tilemaps;
 public class TileInfo
 {
     public Vector3Int Position;
+    public Vector3 Center;
     public TileTypes Type => Cache.Instance.GetTileType(Position);
 
     public int Row;
     public int Column;
     
     public List<GameObject> InteractableObjects;
-    public bool IsBlocked => InteractableObjects.Count > 0 || Type == TileTypes.Granite;
+    public bool IsBlocked => Type == TileTypes.Granite;
 
     public float MovementSpeed
     {
@@ -37,9 +38,10 @@ public class TileInfo
         }
     }
 
-    public TileInfo(Vector3Int position, int row, int column, Tile tile)
+    public TileInfo(Vector3Int position, Vector3 center, int row, int column, Tile tile)
     {
         Position = position;
+        Center = center;
         Row = row;
         Column = column;
 
